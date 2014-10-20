@@ -1,8 +1,8 @@
 <link rel="import" href="lib/polymer/polymer.html">
+<script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
 
 <polymer-element name="ol3-map" attributes="longitude latitude zoom">
     <template>
-        <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
         <link rel="stylesheet" href="../src/lib/ol3/css/ol.css" type="text/css">
         <style>
             :host {
@@ -11,8 +11,11 @@
             }
 
             #ol3-map {
-                width: 100%;
-                height: 400px;
+                position: absoloute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
             }
         </style>
         <div id="ol3-map"></div>
