@@ -1,0 +1,26 @@
+{
+  "name": "map-components",
+  "version": "0.0.1",
+  "homepage": "https://github.com/oliverroick/map-components",
+  "authors": [
+    "Oliver Roick <oliver.roick@gmail.com>"
+  ],
+  "description": "An OpenLayers3 web component",
+  "main": "src/index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ol3": "openlayers/ol3#v3.0.0",
+    "polymer": "Polymer/polymer#~0.4.2"
+  }
+}
