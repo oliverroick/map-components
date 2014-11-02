@@ -1,6 +1,8 @@
 <link rel="import" href="lib/polymer/polymer.html">
 <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
 
+<link rel="import" href="ol3-marker.html">
+
 <polymer-element name="ol3-map" attributes="longitude latitude zoom">
     <template>
         <link rel="stylesheet" href="../src/lib/ol3/css/ol.css" type="text/css">
@@ -18,13 +20,16 @@
                 right: 0;
             }
         </style>
-        <div id="ol3-map"></div>
+        <div id="ol3-map">
+            <content id="features" select="ol3-marker"></content>
+        </div>
     </template>
     <script>
         Polymer('ol3-map', {
             latitude: 0,
             longitude: 0,
             zoom: 10,
+            vectorSource: new ol.source.Vector(),
             attached: function () {
                 var lat = this.latitude;
                 var long = this.longitude;
@@ -35,6 +40,9 @@
                     layers: [
                       new ol.layer.Tile({
                           source: new ol.source.OSM()
+                      }),
+                      new ol.layer.Vector({
+                          source: this.vectorSource
                       })
                     ],
                     view: new ol.View({
@@ -42,6 +50,16 @@
                         zoom: zoom
                     })
                 });
+
+                this.addFeatures();
+            },
+
+            addFeatures: function () {
+                this.features = Array.prototype.slice.call( this.$.features.getDistributedNodes() );
+
+                for (var i = 0, len = this.features.length; i < len; i++) {
+                    this.vectorSource.addFeature(this.features[i].ol3Feature)
+                }
             }
         });
     </script>
